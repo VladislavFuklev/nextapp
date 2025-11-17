@@ -28,8 +28,6 @@ function codeToEmoji(code?: number) {
 }
 
 export default function Header() {
-  const router = useRouter();
-  const [pending, setPending] = useState(false);
   const [openRates, setOpenRates] = useState(false);
 
   const [city, setCity] = useState<CityKey>('kyiv');
@@ -84,17 +82,6 @@ export default function Header() {
       </span>
     );
   }, [loadingWeather, temp, wCode]);
-
-  const onLogout = async () => {
-    try {
-      setPending(true);
-      await fetch('/api/logout', { method: 'POST' });
-      router.push('/login');
-      router.refresh();
-    } finally {
-      setPending(false);
-    }
-  };
 
   return (
     <header className="w-full border-b border-white/10 bg-white/5 backdrop-blur sticky top-0 z-50">
