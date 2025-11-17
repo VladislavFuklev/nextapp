@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { buildOpenMeteoUrl } from '../lib/urls';
 import Popover from './ui/Popover';
 import CurrencyWidget from './widgets/CurrencyWidget';
-// Рендерим напрямую: компонент лёгкий, гарантируем отсутствие задержек в Drawer
 
 type CityKey = 'kyiv' | 'lviv' | 'kharkiv' | 'odesa' | 'dnipro';
 const CITIES: Record<CityKey, { name: string; lat: number; lon: number }> = {
@@ -39,7 +38,6 @@ export default function Header() {
   const [loadingWeather, setLoadingWeather] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
-  // Инициализация города из localStorage (после монтирования)
   useEffect(() => {
     try {
       const saved = localStorage.getItem('ua-city') as CityKey | null;
@@ -47,7 +45,6 @@ export default function Header() {
     } catch {}
   }, []);
 
-  // Получение погоды при изменении города
   useEffect(() => {
     const { lat, lon } = CITIES[city];
     abortRef.current?.abort();
@@ -170,10 +167,6 @@ export default function Header() {
               </div>
             </Popover>
           </div>
-
-          <button onClick={onLogout} className="btn-ghost" disabled={pending}>
-            {pending ? 'Выход…' : 'Выйти'}
-          </button>
         </div>
       </div>
     </header>

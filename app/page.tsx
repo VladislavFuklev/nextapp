@@ -1,9 +1,13 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import Header from '../components/Header';
+import WidgetsClient from './dashboard/WidgetsClient';
 
-export default async function Page() {
-  const store = await cookies();
-  const isAuthed = store.get('auth')?.value === 'true';
-  if (isAuthed) redirect('/dashboard');
-  redirect('/login');
+export default function Page() {
+  return (
+    <div className="min-h-screen w-full">
+      <Header />
+      <div className="mx-auto max-w-5xl p-4">
+        <WidgetsClient />
+      </div>
+    </div>
+  );
 }
