@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "next": "latest",
+    "next": "15.5.7",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.66.0",
